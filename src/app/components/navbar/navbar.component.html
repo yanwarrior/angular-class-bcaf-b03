@@ -1,7 +1,8 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav *ngIf="!hidenNavbar" class="navbar bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      Aplikasi Penjualan
-    </a>
+    <a class="navbar-brand">Penjualan</a>
+    <div class="d-flex">
+      <button (click)="onSignOut()" class="btn btn-outline-success">Sign Out</button>
+    </div>
   </div>
 </nav>

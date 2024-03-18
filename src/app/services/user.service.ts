@@ -3,6 +3,7 @@ import { ISignin, IToken } from '../interfaces/i-signin';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ export class UserService {
   isLoggedIn: boolean = false;
   baseUrl: string = environment.baseUrl
   keyToken: string = "TOKEN";
+  
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   signIn(user: ISignin): Observable<IToken> {
     const headers = {
@@ -41,5 +43,10 @@ export class UserService {
 
   getToken(): string {
     return localStorage.getItem(this.keyToken) || ""
+  }
+
+  signout(): void {
+    localStorage.removeItem(this.keyToken);
+    this.router.navigate(['']);
   }
 }

@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BarangListComponent } from './pages/barang/barang-list/barang-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { BarangDetailComponent } from './pages/barang/barang-detail/barang-detail.component';
+// import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
     NavbarComponent,
     UserSigninComponent,
     BarangListComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    BarangDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,7 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
     NgbModule,
     HttpClientModule,
     AppRoutingModule,
+    // SweetAlert2Module,
   ],
   providers: [],
   bootstrap: [AppComponent]
