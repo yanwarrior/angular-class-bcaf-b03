@@ -12,6 +12,7 @@ import { UserSigninComponent } from './pages/user-signin/user-signin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BarangListComponent } from './pages/barang/barang-list/barang-list.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
     ProductListComponent,
     NavbarComponent,
     UserSigninComponent,
-    BarangListComponent
+    BarangListComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,

@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="card-footer">
-          <button (click)="onSignIn()" class="btn btn-primary">Sign In</button>
+          <button [disabled]="!(password?.valid && email?.valid)" (click)="onSignIn()" class="btn btn-primary">Sign In</button>
         </div>
       </div>
     </div>
