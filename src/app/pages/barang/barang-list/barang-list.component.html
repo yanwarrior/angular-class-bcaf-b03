@@ -1,0 +1,27 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover table-stripped">
+        <thead>
+          <tr>
+            <th>Nomor</th>
+            <th>Nama</th>
+            <th>Satuan</th>
+            <th>Harga Jual</th>
+            <th>Stok</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let barang of daftarBarang">
+            <td>{{ barang.nomor }}</td>
+            <td>{{ barang.nama }}</td>
+            <td>{{ barang.satuan }}</td>
+            <td>{{ barang.hargaJual }}</td>
+            <td>{{ barang.stok }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

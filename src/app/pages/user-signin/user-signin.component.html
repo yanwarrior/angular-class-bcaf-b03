@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center vh-100">
+    <div class="col-md-4">
+      <div class="card">
+        <img src="https://picsum.photos/536/150" class="card-img-top" >
+        <div class="card-body">
+          <div class="form-group mb-3">
+            <label>Email</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              name="email" 
+              [(ngModel)]="user.email"
+              required
+              #email="ngModel"
+              maxlength="30"
+              minlength="10"
+            />
+            <div class="text-danger d-flex flex-column" *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+              <!-- <small>{{ email.errors | json }}</small> -->
+              <small>Invalid email</small>
+              <small *ngIf="email.errors?.['required']">
+                Email dibutuhkan
+              </small>
+              <small *ngIf="email.errors?.['minlength']">
+                Email terlalu sedikit, maksimal {{ email.errors?.['minlength'].requiredLength }} karakter
+              </small>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label>Password</label>
+            <input 
+              type="password" 
+              class="form-control" 
+              name="password" 
+              [(ngModel)]="user.password" 
+              required
+              #password="ngModel"
+              maxlength="30"
+              minlength="10"
+              pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$"
+            />
+            <div class="text-danger d-flex flex-column" *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+              <!-- <small>{{ password.errors | json }}</small> -->
+              <small>Invalid password</small>
+              <small *ngIf="password.errors?.['pattern']">
+                Password tidak kuat, atau mengandung spasi. Harus melibatkan angka, huruf dan beberapa karakter lainnya.
+              </small>
+              <small *ngIf="password.errors?.['required']">
+                Password dibutuhkan
+              </small>
+              <small *ngIf="password.errors?.['minlength']">
+                Password terlalu sedikit, maksimal {{ password.errors?.['minlength'].requiredLength }} karakter
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button (click)="onSignIn()" class="btn btn-primary">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

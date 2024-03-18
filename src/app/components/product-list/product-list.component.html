@@ -1,0 +1,109 @@
+
+<div class="container mt-4">
+  <div class="row mb-4">
+    <div class="col-md-12 d-flex justify-content-between">
+      <h3>Daftar Product</h3>
+      <div class="d-flex gap-3">
+        <div *ngIf="isActive">
+          <button [disabled]="isActive" class="btn btn-primary">Ini Tombol</button>
+        </div>
+        <button (click)="toggleButton()" class="btn btn-primary">Toggle</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="form-group">
+        <label>Test</label>
+        <input type="text" class="form-control" #input (keyup.control.shift.enter)="getEvent(input)" />
+        {{ input.value }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-body"></div>
+      <div class="card">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Subtotal</th>
+              <th>Price After Discount</th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>
+                <img class="img-thumbnail" src="{{product.imgURL}}" >
+              </td>
+              <td>{{ product.id }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.price }}</td>
+              <td>{{ product.stock }}</td>
+              <td>{{ product.price * 5 }}</td>
+              <td>{{ calculateDiscount(product.price) }}</td>
+              <td>
+                <button class="btn btn-primary" #btn (click)="getProduct(product); open(content);">Detail</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="">Launch demo modal</button> -->
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+    <div class="form-group">
+      <i class="bi-alarm"></i>
+      <label>Name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="product.name" >
+    </div>
+    <div class="form-group">
+      <label>Stock</label>
+      <input type="number" class="form-control" name="stock" [(ngModel)]="product.stock" >
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number" class="form-control" name="price" [(ngModel)]="product.price" >
+    </div>
+		<!-- <form>
+			<div class="mb-3">
+				<label for="dateOfBirth">Date of birth</label>
+				<div class="input-group">
+					<input
+						id="dateOfBirth"
+						class="form-control"
+						placeholder="yyyy-mm-dd"
+						name="dp"
+						ngbDatepicker
+						#dp="ngbDatepicker"
+					/>
+					<button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button>
+				</div>
+			</div>
+		</form> -->
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+	</div>
+</ng-template>
+
