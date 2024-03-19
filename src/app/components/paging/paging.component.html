@@ -1,0 +1,17 @@
+<div class="btn-group">
+  <button 
+    [disabled]="!previous" 
+    class="btn btn-primary"
+    (click)="onPaginateAction(previous)"
+  >
+    Previous
+  </button>
+
+  <button 
+    [disabled]="!next" 
+    class="btn btn-primary"
+    (click)="onPaginateAction(next)"
+  >
+    Next
+  </button>
+</div>

@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let barang of daftarBarang">
+          <tr *ngFor="let barang of daftarBarang.results">
             <td>{{ barang.nomor }}</td>
             <td>{{ barang.nama }}</td>
             <td>{{ barang.satuan }}</td>
@@ -27,6 +27,17 @@
             <td>{{ barang.stok }}</td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <app-paging 
+                [next]="daftarBarang.next" 
+                [previous]="daftarBarang.previous"
+                (onPaginate)="onPaginate($event)"
+              ></app-paging>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
