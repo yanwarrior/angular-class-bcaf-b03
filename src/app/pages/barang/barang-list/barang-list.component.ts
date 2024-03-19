@@ -11,6 +11,7 @@ import { BarangService } from 'src/app/services/barang.service';
 })
 export class BarangListComponent implements OnInit {
   daftarBarang: IPaging<IBarang> = new Paging<IBarang>();
+  loadingIndicatorPaging: boolean = false;
 
   constructor(private barangService: BarangService) {}
 
@@ -19,9 +20,11 @@ export class BarangListComponent implements OnInit {
   }
 
   onList(page: number | null = null) {
+    this.loadingIndicatorPaging = true;
     this.barangService.all({ page })
       .subscribe((response: IPaging<IBarang>) => {
         this.daftarBarang = response;
+        this.loadingIndicatorPaging = false;
       })
   }
 

@@ -48,7 +48,7 @@ export class UserSigninComponent {
           showConfirmButton: false,
           timer: 1500
         }).then(() => {
-          this.router.navigate(['/barang'])
+          this.router.navigate(['/main/barang'])
         });
 
       })

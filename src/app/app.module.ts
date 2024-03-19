@@ -15,6 +15,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { BarangDetailComponent } from './pages/barang/barang-detail/barang-detail.component';
 import { PagingComponent } from './components/paging/paging.component';
+import { BarangCreateComponent } from './pages/barang/barang-create/barang-create.component';
+import { MainComponent } from './pages/main/main.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { PagingComponent } from './components/paging/paging.component';
     BarangListComponent,
     ErrorMessageComponent,
     BarangDetailComponent,
-    PagingComponent
+    PagingComponent,
+    BarangCreateComponent,
+    MainComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
