@@ -1,7 +1,7 @@
 import { IBarang } from "../interfaces/i-barang";
 
 export class Barang implements IBarang {
-  _id?: string | undefined = "";
+  _id?: string = "";
   nomor: string = "";
   nama: string = "";
   satuan: string = "";

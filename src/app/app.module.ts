@@ -18,6 +18,9 @@ import { PagingComponent } from './components/paging/paging.component';
 import { BarangCreateComponent } from './pages/barang/barang-create/barang-create.component';
 import { MainComponent } from './pages/main/main.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { WidgetBarangDetailComponent } from './widgets/widget-barang-detail/widget-barang-detail.component';
+
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     PagingComponent,
     BarangCreateComponent,
     MainComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    WidgetBarangDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +46,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     NgbModule,
     HttpClientModule,
     AppRoutingModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
+
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

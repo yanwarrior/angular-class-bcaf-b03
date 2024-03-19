@@ -26,4 +26,42 @@ export class BarangService {
       { headers, params }
     );
   }
+
+  create(barang: IBarang): Observable<IBarang> {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': this.userService.getToken()
+    }
+
+    return this.httpClient.post<IBarang>(
+      `${environment.baseUrl}/barang/`, 
+      JSON.stringify(barang),
+      { headers }
+    )
+  }
+
+  get(id: string): Observable<IBarang> {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': this.userService.getToken()
+    }
+
+    return this.httpClient.get<IBarang>(
+      `${environment.baseUrl}/barang/${id}`, 
+      { headers }
+    );
+  }
+
+  update(id: string, barang: IBarang): Observable<IBarang> {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': this.userService.getToken()
+    }
+
+    return this.httpClient.put<IBarang>(
+      `${environment.baseUrl}/barang/${id}`, 
+      JSON.stringify(barang),
+      { headers }
+    );
+  }
 }

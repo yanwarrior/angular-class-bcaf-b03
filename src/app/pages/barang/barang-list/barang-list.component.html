@@ -1,9 +1,22 @@
 
 <div class="container mt-3">
-  <div class="row">
+  <div class="row mb-3">
     <div class="col-md-12 d-flex justify-content-between">
       <h4>Daftar Barang</h4>
-      <a [routerLink]="['new']" class="btn btn-primary">Buat Barang</a>
+      <div class="d-flex justify-content-end gap-3 w-75">
+        <input type="text" class="form-control-sm w-50" 
+          [(ngModel)]="search" 
+          name="search" 
+          (keyup.enter)="onList()" 
+          placeholder="Search..."
+        />
+        <select (change)="onList()" class="form-control-sm" name="limit" [(ngModel)]="limit" >
+          <option value="5">5 Items</option>
+          <option value="10">10 Items</option>
+          <option value="20">20 Items</option>
+        </select>
+        <a [routerLink]="['new']" class="btn btn-primary">Buat Barang</a>
+      </div>
     </div>
   </div>
   <div class="row">
@@ -16,6 +29,7 @@
             <th>Satuan</th>
             <th>Harga Jual</th>
             <th>Stok</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -25,6 +39,9 @@
             <td>{{ barang.satuan }}</td>
             <td>{{ barang.hargaJual }}</td>
             <td>{{ barang.stok }}</td>
+            <td>
+              <app-widget-barang-detail [id]="barang._id || ''" ></app-widget-barang-detail>
+            </td>
           </tr>
         </tbody>
         <tfoot>
