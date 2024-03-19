@@ -14,6 +14,8 @@ import { BarangListComponent } from './pages/barang/barang-list/barang-list.comp
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { BarangDetailComponent } from './pages/barang/barang-detail/barang-detail.component';
+import { PagingComponent } from './components/paging/paging.component';
+import { WidgetBarangCreateComponent } from './widgets/barang/widget-barang-create/widget-barang-create.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { BarangDetailComponent } from './pages/barang/barang-detail/barang-detai
     UserSigninComponent,
     BarangListComponent,
     ErrorMessageComponent,
-    BarangDetailComponent
+    BarangDetailComponent,
+    PagingComponent,
+    WidgetBarangCreateComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,6 @@ export interface IBarang {
   nomor: string;
   nama: string;
   satuan: string;
-  hargaJual: number;
-  stok: number;
+  hargaJual: number | null;
+  stok: number | null;
 }

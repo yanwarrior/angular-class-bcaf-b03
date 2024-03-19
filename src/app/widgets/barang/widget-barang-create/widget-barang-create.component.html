@@ -1,0 +1,109 @@
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Buat Barang</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+    <div class="form-group mb-3">
+      <label class="mb-2">Nomor</label>
+      <input 
+        class="form-control" 
+        type="text" 
+        [(ngModel)]="barang.nomor" 
+        name="nomor"
+        #nomor="ngModel"
+        required
+        minlength="6"
+      />
+      <div class="text-danger d-flex flex-column" *ngIf="!nomor?.valid && (nomor?.dirty || nomor?.touched)">
+        <!-- <small>{{ nomor.errors | json }}</small> -->
+        <small>Invalid nomor</small>
+        <small *ngIf="nomor.errors?.['required']">
+          Nomor dibutuhkan
+        </small>
+        <small *ngIf="nomor.errors?.['minlength']">
+          Nomor terlalu sedikit, maksimal {{ nomor.errors?.['minlength'].requiredLength }} karakter
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label class="mb-2">Nama</label>
+      <input 
+        class="form-control" 
+        type="text" 
+        [(ngModel)]="barang.nama" 
+        name="nama"
+        #nama="ngModel"
+        required
+        minlength="6"
+      />
+      <div class="text-danger d-flex flex-column" *ngIf="!nama?.valid && (nama?.dirty || nama?.touched)">
+        <!-- <small>{{ nomor.errors | json }}</small> -->
+        <small>Invalid nama</small>
+        <small *ngIf="nama.errors?.['required']">
+          Nama dibutuhkan
+        </small>
+        <small *ngIf="nama.errors?.['minlength']">
+          Nama terlalu sedikit, maksimal {{ nama.errors?.['minlength'].requiredLength }} karakter
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label class="mb-2">Satuan</label>
+      <input 
+        class="form-control" 
+        type="text" 
+        [(ngModel)]="barang.satuan" 
+        name="satuan"
+        #satuan="ngModel"
+        required
+        minlength="6"
+      />
+      <div class="text-danger d-flex flex-column" *ngIf="!satuan?.valid && (satuan?.dirty || satuan?.touched)">
+        <!-- <small>{{ nomor.errors | json }}</small> -->
+        <small>Invalid satuan</small>
+        <small *ngIf="nomor.errors?.['required']">
+          Satuan dibutuhkan
+        </small>
+        <small *ngIf="nomor.errors?.['minlength']">
+          Satuan terlalu sedikit, maksimal {{ nomor.errors?.['minlength'].requiredLength }} karakter
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label class="mb-2">Harga Jual</label>
+      <input 
+        class="form-control" 
+        type="number" 
+        [(ngModel)]="barang.hargaJual" 
+        name="hargaJual"
+        #hargaJual="ngModel"
+        required
+        pattern="(^0$)|(^[1-9]\d{0,8}$)"
+        min="1"
+      />
+      <div class="text-danger d-flex flex-column" *ngIf="!hargaJual?.valid && (hargaJual?.dirty || hargaJual?.touched)">
+        <small>{{ hargaJual.errors | json }}</small>
+        <small>Invalid harga jual</small>
+        <small *ngIf="hargaJual.errors?.['required']">
+          Harga jual dibutuhkan
+        </small>
+        <small *ngIf="hargaJual.errors?.['minlength']">
+          Harga jual terlalu sedikit, maksimal {{ nomor.errors?.['minlength'].requiredLength }} karakter
+        </small>
+      </div>
+    </div>
+
+    
+	</div>
+
+  
+	<div class="modal-footer">
+		<button class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+	</div>
+</ng-template>
+
+<button class="btn btn-primary" (click)="open(content)">Buat Barang</button>

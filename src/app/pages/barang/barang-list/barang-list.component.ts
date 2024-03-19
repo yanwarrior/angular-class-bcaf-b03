@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IBarang } from 'src/app/interfaces/i-barang';
+import { IPaging } from 'src/app/interfaces/i-paging';
+import { Paging } from 'src/app/models/paging';
 import { BarangService } from 'src/app/services/barang.service';
 
 @Component({
@@ -8,7 +10,8 @@ import { BarangService } from 'src/app/services/barang.service';
   styleUrls: ['./barang-list.component.css']
 })
 export class BarangListComponent implements OnInit {
-  daftarBarang: IBarang[] = [];
+  // daftarBarang: IBarang[] = [];
+  daftarBarang: IPaging<IBarang> = new Paging<IBarang>();
 
   constructor(private barangService: BarangService) {}
 
@@ -16,13 +19,22 @@ export class BarangListComponent implements OnInit {
     this.onList()
   }
 
-  onList() {
-    this.barangService.all()
-      .subscribe((response: IBarang[]) => {
+  onList(page: number | null = 1) {
+    const params = {page}
+
+    this.barangService.all(params)
+      .subscribe((response: IPaging<IBarang>) => {
         this.daftarBarang = response;
       })
   }
 
-  
+  onPaginate(page: number) {
+    console.log(typeof page)
+    this.onList(page)
+  }
+
+  callback() {
+    this.onList();
+  }
 
 }
