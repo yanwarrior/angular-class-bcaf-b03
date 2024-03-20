@@ -1,0 +1,187 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <div class="card" [formGroup]="orderForm" >
+        <div class="card-body">
+          <div class="card-title">
+            <h5>Order Detail</h5>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group mb-3">
+                <label class="mb-2">Nomor</label>
+                <input type="text" class="form-control" formControlName="nomor">
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="form-group mb-3">
+                <label class="mb-2">Tanggal</label>
+                <input type="date" class="form-control" formControlName="tanggal">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <div class="card" [formGroup]="orderForm">
+        <div class="card-body" formGroupName="customer">
+          <div class="card-title">
+            <h5>Customer</h5>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <div class="form-group mb-3">
+                <label class="mb-2">Nomor</label>
+                <input type="text" class="form-control" formControlName="nomor">
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="form-group mb-3">
+                <label class="mb-2">Nama</label>
+                <input type="text" class="form-control" formControlName="nama">
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <div class="form-group mb-3">
+                <label class="mb-2">Alamat</label>
+                <textarea class="form-control" formControlName="alamat"></textarea>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="form-group mb-3">
+                <label class="mb-2">Telepon</label>
+                <input type="text" class="form-control" formControlName="telepon">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <div class="card" [formGroup]="orderForm">
+        <div class="card-body">
+          <div class="card-title">
+            <h5>Item Barang</h5>
+          
+          </div>
+        </div>
+        <table class="table table-stripped table-hover" formArrayName="items">
+          <thead>
+            <tr>
+              <th>Nomor</th>
+              <th>Nama</th>
+              <th>Satuan</th>
+              <th>Harga Jual</th>
+              <th>Stok</th>
+              <th>Qty</th>
+              <th class="text-end">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+              *ngFor="let item of getItemsForm().controls; let itemIndex = index"
+              [formGroupName]="itemIndex"
+            >
+              <td>
+                {{ getItem(itemIndex).nomor }}
+              </td>
+              <td>
+                {{ getItem(itemIndex).nama }}
+              </td>
+              <td>
+                {{ getItem(itemIndex).satuan }}
+              </td>
+              <td>
+                {{ getItem(itemIndex).hargaJual| currency:'IDR':'symbol-narrow' }}
+              </td>
+              <td>
+                {{ getItem(itemIndex).stok }}
+              </td>
+              <td>
+                <input 
+                  required 
+                  minlength="2"
+                  type="text" 
+                  class="form-control" formControlName="qty" (ngModelChange)="updateQtyForm(itemIndex)">
+                {{ getItemsForm().at(itemIndex).get('qty')?.errors| json }}
+              </td>
+              <td class="text-end">
+                {{ getItem(itemIndex).subtotal | currency:'IDR':'symbol-narrow'}}
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  [(ngModel)]="nomorBarang" 
+                  (keyup.enter)="onFindByBarang()"
+                  [ngModelOptions]="{standalone: true}"
+                >
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3 d-flex justify-content-end">
+    <div class="col-md-5">
+      <div class="card" [formGroup]="orderForm">
+        <table class="table table-stripped table-hover">
+          <tbody>
+            <tr>
+              <td colspan="6" class="text-end">
+                <h5>Total</h5>
+              </td>
+              <td class="text-end">
+                <h5>
+                  {{ (orderForm.get('total')?.value || 0) | currency:'IDR': 'symbol-narrow'}}
+                </h5>
+              </td>
+            </tr>
+            <tr >
+              <td colspan="6" class="text-end">
+                <h5>Dibayar</h5>
+              </td>
+              <td>
+                <input type="text" class="form-control" formControlName="dibayar">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="card-footer d-flex justify-content-end">
+          <button (click)="onSubmit()" class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      
+    </div>
+  </div>
+</div>

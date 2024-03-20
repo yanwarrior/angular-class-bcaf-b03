@@ -6,7 +6,7 @@ import { HaloDuniaComponent } from './components/halo-dunia/halo-dunia.component
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { UserSigninComponent } from './pages/user-signin/user-signin.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +23,7 @@ import { WidgetBarangDetailComponent } from './widgets/widget-barang-detail/widg
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './pages/customers/customer-list/customer-list.component';
 import { WidgetCustomerCreateComponent } from './widgets/widget-customer-create/widget-customer-create.component';
+import { OrderCreateComponent } from './pages/orders/order-create/order-create.component';
 
 
 
@@ -43,7 +44,8 @@ import { WidgetCustomerCreateComponent } from './widgets/widget-customer-create/
     WidgetBarangDetailComponent,
     MenuComponent,
     CustomerListComponent,
-    WidgetCustomerCreateComponent
+    WidgetCustomerCreateComponent,
+    OrderCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,7 @@ import { WidgetCustomerCreateComponent } from './widgets/widget-customer-create/
     AppRoutingModule,
     NgxMaskDirective,
     NgxMaskPipe,
-
+    ReactiveFormsModule,
   ],
   providers: [provideNgxMask()],
   bootstrap: [AppComponent]

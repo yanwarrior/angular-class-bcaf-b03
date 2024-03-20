@@ -7,6 +7,7 @@ import { MainComponent } from './pages/main/main.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { BarangCreateComponent } from './pages/barang/barang-create/barang-create.component';
 import { CustomerListComponent } from './pages/customers/customer-list/customer-list.component';
+import { OrderCreateComponent } from './pages/orders/order-create/order-create.component';
 
 const routes: Routes = [
   {path: "", component: UserSigninComponent, canActivate: [PreventGuard]},
@@ -17,7 +18,8 @@ const routes: Routes = [
     children: [
       { path: 'barang', component: BarangListComponent },
       { path: 'barang/new', component: BarangCreateComponent },
-      { path: 'customer', component: CustomerListComponent }
+      { path: 'customer', component: CustomerListComponent },
+      { path: 'order/new', component: OrderCreateComponent },
     ]
   },
   {path: "**", component: NotFoundComponent},
