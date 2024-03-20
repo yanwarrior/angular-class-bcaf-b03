@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">
+            <h5>New Order</h5>
+          </div>
+          <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="row mb-4">
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Nomor</label>
+                  <input   type="text" class="form-control" formControlName="nomor" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Tanggal</label>
+                  <input type="date" class="form-control" formControlName="tanggal"  >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group mb-3">
+                  <label class="mb-2">Dibayar</label>
+                  <input type="text" class="form-control" formControlName="dibayar"  >
+                </div>
+              </div>
+            </div>
+            <div formGroupName="customer" class="row mb-4">
+              <h5>Customer</h5>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="mb-2">Nomor</label>
+                  <input type="text" class="form-control" minlength="6" name="nomor" formControlName="nomor" required>
+                  {{ orderForm.get('customer')?.get('nomor')?.errors| json }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="mb-2">Nama</label>
+                  <h6>{{ order.customer.nama || "No customer" }}</h6>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="mb-2">Alamat</label>
+                  <p>{{ order.customer.alamat || "No alamat" }}</p>
+                </div>
+              </div>
+            </div>
+            <div  class="mb-4">
+              <h5>Items</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nomor</th>
+                    <th>Nama</th>
+                    <th>Satuan</th>
+                    <th>Harga Jual</th>
+                    <th>Stok</th>
+                    <th>Qty</th>
+                    <th>Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="items">
+                  <tr *ngFor="let item of getItemsForm().controls; let itemIndex=index" [formGroupName]="itemIndex">
+                    <td >
+                      <input 
+                        *ngIf="!order.items[itemIndex].nama" 
+                        class="form-control" 
+                        type="text" 
+                        formControlName="nomor" 
+                        (keyup.space)="onFindBarang(itemIndex)"
+                      />
+                      <span *ngIf="order.items[itemIndex].nama">
+                        {{ order.items[itemIndex].nomor }}
+                      </span>
+                    </td>
+                    <td >
+                      {{ order.items[itemIndex].nama }}
+                    </td>
+                    <td >
+                      {{ order.items[itemIndex].satuan}}
+                    </td>
+                    <td >
+                      {{ order.items[itemIndex].hargaJual | currency:'IDR': 'symbol-narrow' }}
+                    </td>
+                    <td>
+                      {{ order.items[itemIndex].stok }}
+                    </td>
+                    <td>
+                      <input required (ngModelChange)="changeQty(itemIndex)" id="qty" class="form-control" type="text" formControlName="qty" />
+                      {{ item.get('qty')?.errors | json }}
+                    </td>
+                    <td>
+                      {{ order.items[itemIndex].subtotal | currency:'IDR': 'symbol-narrow' }}
+                    </td>
+                    <td>
+                      <button class="btn btn-sm" (click)="removeItem(itemIndex)">Remove</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- {{ getItemsForm().controls.length }}
+              {{order | json}} -->
+            </div>
+            <button type="submit">Save</button>
+          </form>
+
+        </div>
+        
+        <button (click)="addItem()">Add Item</button>
+      </div>
+    </div>
+  </div>
+</div>

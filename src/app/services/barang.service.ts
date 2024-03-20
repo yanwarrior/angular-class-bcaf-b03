@@ -5,6 +5,7 @@ import { IBarang } from '../interfaces/i-barang';
 import { UserService } from './user.service';
 import { environment } from 'src/environments/environment';
 import { IPaging } from '../interfaces/i-paging';
+import { IItem } from '../interfaces/i-item';
 
 @Injectable({
   providedIn: 'root'
@@ -64,4 +65,16 @@ export class BarangService {
       { headers }
     );
   }
+
+  findNomor(nomor: string): Observable<IItem> {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': this.userService.getToken()
+    }
+
+    return this.httpClient.get<IItem>(
+      `${environment.baseUrl}/barang/find/${nomor}`, 
+      { headers }
+    );
+  } 
 }

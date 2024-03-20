@@ -7,9 +7,11 @@ import { BarangDetailComponent } from './pages/barang/barang-detail/barang-detai
 import { MainComponent } from './pages/main/main.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { BarangCreateComponent } from './pages/barang/barang-create/barang-create.component';
+import { OrderCreateComponent } from './pages/orders/order-create/order-create.component';
 
 const routes: Routes = [
-  {path: "", component: UserSigninComponent, canActivate: [PreventGuard]},
+  // {path: "", component: UserSigninComponent, canActivate: [PreventGuard]},
+  {path: "", component: OrderCreateComponent},
   {
     path: "main", 
     component: MainComponent, 

@@ -6,7 +6,7 @@ import { HaloDuniaComponent } from './components/halo-dunia/halo-dunia.component
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { UserSigninComponent } from './pages/user-signin/user-signin.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +20,7 @@ import { MainComponent } from './pages/main/main.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { WidgetBarangDetailComponent } from './widgets/widget-barang-detail/widget-barang-detail.component';
+import { OrderCreateComponent } from './pages/orders/order-create/order-create.component';
 
 
 
@@ -37,10 +38,12 @@ import { WidgetBarangDetailComponent } from './widgets/widget-barang-detail/widg
     BarangCreateComponent,
     MainComponent,
     NotFoundComponent,
-    WidgetBarangDetailComponent
+    WidgetBarangDetailComponent,
+    OrderCreateComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule, 
     FormsModule,
     NgxBootstrapIconsModule.pick(allIcons),
     NgbModule,
