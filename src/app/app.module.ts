@@ -20,6 +20,9 @@ import { MainComponent } from './pages/main/main.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { WidgetBarangDetailComponent } from './widgets/widget-barang-detail/widget-barang-detail.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { CustomerListComponent } from './pages/customers/customer-list/customer-list.component';
+import { WidgetCustomerCreateComponent } from './widgets/widget-customer-create/widget-customer-create.component';
 
 
 
@@ -37,7 +40,10 @@ import { WidgetBarangDetailComponent } from './widgets/widget-barang-detail/widg
     BarangCreateComponent,
     MainComponent,
     NotFoundComponent,
-    WidgetBarangDetailComponent
+    WidgetBarangDetailComponent,
+    MenuComponent,
+    CustomerListComponent,
+    WidgetCustomerCreateComponent
   ],
   imports: [
     BrowserModule,

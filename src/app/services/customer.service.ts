@@ -1,66 +1,67 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IBarang } from '../interfaces/i-barang';
 import { UserService } from './user.service';
-import { environment } from 'src/environments/environment';
+import { ICustomer } from '../interfaces/i-customer';
 import { IPaging } from '../interfaces/i-paging';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BarangService {
+export class CustomerService {
 
   constructor(
     private httpClient: HttpClient,     
-    private userService: UserService) { }
+    private userService: UserService
+  ) { }
 
-  all(params: any = {}): Observable<IPaging<IBarang>> {
+  all(params: any = {}): Observable<IPaging<ICustomer>> {
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': this.userService.getToken()
     }
     
-    return this.httpClient.get<IPaging<IBarang>>(
-      `${environment.baseUrl}/barang/`, 
+    return this.httpClient.get<IPaging<ICustomer>>(
+      `${environment.baseUrl}/customer/`, 
       { headers, params }
     );
   }
 
-  create(barang: IBarang): Observable<IBarang> {
+  create(customer: ICustomer): Observable<ICustomer> {
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': this.userService.getToken()
     }
 
-    return this.httpClient.post<IBarang>(
-      `${environment.baseUrl}/barang/`, 
-      JSON.stringify(barang),
+    return this.httpClient.post<ICustomer>(
+      `${environment.baseUrl}/customer/`, 
+      JSON.stringify(customer),
       { headers }
     )
   }
 
-  get(id: string): Observable<IBarang> {
+  get(id: string): Observable<ICustomer> {
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': this.userService.getToken()
     }
 
-    return this.httpClient.get<IBarang>(
-      `${environment.baseUrl}/barang/${id}`, 
+    return this.httpClient.get<ICustomer>(
+      `${environment.baseUrl}/customer/${id}`, 
       { headers }
     );
   }
 
-  update(id: string, barang: IBarang): Observable<IBarang> {
+  update(id: string, customer: ICustomer): Observable<ICustomer> {
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': this.userService.getToken()
     }
 
-    return this.httpClient.put<IBarang>(
-      `${environment.baseUrl}/barang/${id}`, 
-      JSON.stringify(barang),
+    return this.httpClient.put<ICustomer>(
+      `${environment.baseUrl}/customer/${id}`, 
+      JSON.stringify(customer),
       { headers }
     );
   }
@@ -72,7 +73,7 @@ export class BarangService {
     }
 
     return this.httpClient.delete<any>(
-      `${environment.baseUrl}/barang/${id}`, 
+      `${environment.baseUrl}/customer/${id}`, 
       { headers }
     );
   }

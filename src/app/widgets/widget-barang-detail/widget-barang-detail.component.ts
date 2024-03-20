@@ -1,4 +1,4 @@
-import { Component, Input, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IBarang } from 'src/app/interfaces/i-barang';
@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class WidgetBarangDetailComponent {
   @Input() id: string = "";
+  @Output() onSuccess: EventEmitter<IBarang> = new EventEmitter();
 
   barang: IBarang = new Barang();
 
@@ -46,7 +47,8 @@ export class WidgetBarangDetailComponent {
           text: `Data '${response.nama}' berhasil dibuat`,
           icon: 'success',
         }).then(() => {
-          this.router.navigate(['/main/barang'])
+          // this.router.navigate(['/main/barang'])
+          this.onSuccess.emit(response);
         })
       })
   }

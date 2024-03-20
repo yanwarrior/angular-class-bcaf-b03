@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Update {{ barang.nama }}</h4>
+		<h4 class="modal-title" id="modal-basic-title">Update {{ customer.nama }}</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
@@ -9,21 +9,20 @@
       <input 
         type="text"
         class="form-control"
-        [(ngModel)]="barang.nomor"
+        [(ngModel)]="customer.nomor"
         #nomor="ngModel"
         name="nomor"
         maxlength="6"
         minlength="6"
         required
       />
-
       <div class="text-danger d-flex flex-column" *ngIf="!nomor?.valid && (nomor?.dirty || nomor?.touched)">
-        <small>Invalid nomor barang</small>
+        <small>Invalid nomor customer</small>
         <small *ngIf="nomor.errors?.['required']">
-          Nomor barang dibutuhkan
+          Nomor customer dibutuhkan
         </small>
         <small *ngIf="nomor.errors?.['minlength'] || nomor.errors?.['maxlength']">
-          Nomor harus tepat {{ nomor.errors?.['minlength'].requiredLength }} karakters
+          Nomor harus tepat {{ nomor.errors?.['minlength'].requiredLength }} karakter
         </small>
       </div>
     </div>
@@ -34,7 +33,7 @@
         type="text"
         class="form-control"
         name="nama"
-        [(ngModel)]="barang.nama"
+        [(ngModel)]="customer.nama"
         #nama="ngModel"
         maxlength="100"
         minlength="2"
@@ -42,7 +41,7 @@
       />
 
       <div class="text-danger d-flex flex-column" *ngIf="!nama?.valid && (nama?.dirty || nama?.touched)">
-        <small>Invalid nama barang</small>
+        <small>Invalid nama customer</small>
         <small *ngIf="nama.errors?.['required']">
           Nama barang dibutuhkan
         </small>
@@ -53,41 +52,29 @@
     </div>
 
     <div class="form-group mb-3">
-      <label class="mb-2">Satuan</label>
-      <input 
-        type="text"
-        class="form-control"
-        name="satuan"
-        [(ngModel)]="barang.satuan"
-        #satuan="ngModel"
-      />
+      <label class="mb-2">Alamat</label>
+      <textarea 
+        class="form-group" 
+        name="alamat" 
+        [(ngModel)]="customer.alamat"
+        #alamat="ngModel"
+      ></textarea>
     </div>
 
     <div class="form-group mb-3">
-      <label class="mb-2">Harga Jual</label>
+      <label class="mb-2">Telepon</label>
       <input 
         type="text"
         class="form-control"
-        name="hargaJual"
-        [(ngModel)]="barang.hargaJual"
-        #hargaJual="ngModel"
-      />
-    </div>
-
-    <div class="form-group mb-3">
-      <label class="mb-2">Stok</label>
-      <input 
-        type="text"
-        class="form-control"
-        name="stok"
-        [(ngModel)]="barang.stok"
-        #stok="ngModel"
+        name="telepon"
+        [(ngModel)]="customer.telepon"
+        #telepon="ngModel"
       />
     </div>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); onUpdate()">Save</button>
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); onCreate()">Save</button>
 	</div>
 </ng-template>
 
-<button class="btn btn-outline-primary" (click)="open(content)">Edit</button>
+<button class="btn btn-outline-primary" (click)="open(content)">Tambah</button>

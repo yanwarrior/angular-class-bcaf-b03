@@ -1,8 +1,14 @@
 <nav *ngIf="!hidenNavbar" class="navbar bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand">Penjualan</a>
-    <div class="d-flex">
-      <button (click)="onSignOut()" class="btn btn-outline-success">Sign Out</button>
+    <a class="navbar-brand">
+      Penjualan
+      <div *ngIf="isLoading()" class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </a>
+    <div class="d-flex gap-2">
+      <button (click)="onSignOut()" class="btn btn-sm btn-outline-success">Sign Out</button>
+      <app-menu></app-menu>
     </div>
   </div>
 </nav>

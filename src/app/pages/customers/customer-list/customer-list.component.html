@@ -1,8 +1,7 @@
-
 <div class="container mt-3">
   <div class="row mb-3">
     <div class="col-md-12 d-flex justify-content-between">
-      <h4>Daftar Barang</h4>
+      <h4>Daftar Customer</h4>
       <div class="d-flex justify-content-end gap-3 w-75">
         <input type="text" class="form-control-sm w-50" 
           [(ngModel)]="search" 
@@ -16,53 +15,42 @@
           <option value="10">10 Items</option>
           <option value="20">20 Items</option>
         </select>
-        <a [routerLink]="['new']" class="btn btn-primary">Buat Barang</a>
+        <!-- <a [routerLink]="['new']" class="btn btn-primary">Buat Customer</a> -->
+        <app-widget-customer-create></app-widget-customer-create>
         <button (click)="onList()" class="btn btn-primary">
           refresh
         </button>
       </div>
     </div>
   </div>
-  <div class="row">
+
+  <div class="row mb-3">
     <div class="col-md-12">
       <table class="table table-bordered table-hover table-stripped">
         <thead>
           <tr>
             <th>Nomor</th>
             <th>Nama</th>
-            <th>Satuan</th>
-            <th>Harga Jual</th>
-            <th>Stok</th>
+            <th>Alamat</th>
+            <th>Telepon</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let barang of daftarBarang.results">
-            <td>{{ barang.nomor }}</td>
-            <td>{{ barang.nama }}</td>
-            <td>{{ barang.satuan }}</td>
-            <td>{{ barang.hargaJual }}</td>
-            <td>{{ barang.stok }}</td>
-            <td>
-              <div class="d-flex gap-2">
-                <app-widget-barang-detail 
-                  [id]="barang._id || ''" 
-                  (onSuccess)="onSuccessUpdate($event)"
-                >
-                </app-widget-barang-detail>
-                <button (click)="onDelete(barang._id || '')" class="btn btn-outline-danger">
-                  Remove
-                </button>
-              </div>
-            </td>
+          <tr *ngFor="let customer of customers.results">
+            <td>{{ customer.nomor }}</td>
+            <td>{{ customer.nama }}</td>
+            <td>{{ customer.alamat }}</td>
+            <td>{{ customer.telepon }}</td>
+            <td></td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <td colspan="5">
               <app-paging 
-                [next]="daftarBarang.next" 
-                [previous]="daftarBarang.previous"
+                [next]="customers.next" 
+                [previous]="customers.previous"
                 (onPaginate)="onPaginate($event)"
               ></app-paging>
             </td>
@@ -71,5 +59,4 @@
       </table>
     </div>
   </div>
-
 </div>
