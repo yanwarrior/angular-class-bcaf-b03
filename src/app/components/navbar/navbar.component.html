@@ -1,4 +1,4 @@
-<nav *ngIf="!hidenNavbar" class="navbar bg-body-tertiary">
+<!-- <nav *ngIf="!hidenNavbar" class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand">
       Penjualan
@@ -7,8 +7,49 @@
       </div>
     </a>
     <div class="d-flex gap-2">
-      <button (click)="onSignOut()" class="btn btn-sm btn-outline-success">Sign Out</button>
-      <app-menu></app-menu>
+      
+    </div>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <app-menu></app-menu>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item"  *ngFor="let menu of getMenu()">
+          <a *ngIf="!menu.childs" [routerLink]="[menu.mainPath]" routerLinkActive="active" class="nav-link">
+            {{ menu.title }}
+          </a>
+          <a *ngIf="menu.childs" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            {{ menu.title }}
+          </a>
+          <ul *ngIf="menu.childs" class="dropdown-menu">
+            <li *ngFor="let m of menu.childs" class="nav-item dropdown">
+              <a [routerLink]="[m.mainPath]" routerLinkActive="active" class="dropdown-item">{{ m.title }}</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <div class="d-flex" role="search">
+        <button (click)="onSignOut()" class="btn btn-sm btn-outline-success">Sign Out</button>
+      </div>
     </div>
   </div>
 </nav>

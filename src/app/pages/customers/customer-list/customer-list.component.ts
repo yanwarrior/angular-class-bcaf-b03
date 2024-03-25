@@ -4,6 +4,7 @@ import { IPaging } from 'src/app/interfaces/i-paging';
 import { Paging } from 'src/app/models/paging';
 import { CustomerService } from 'src/app/services/customer.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-customer-list',
@@ -35,6 +36,27 @@ export class CustomerListComponent implements OnInit {
 
   onPaginate(page: number | null) {
     this.onList(page);
+  }
+
+  onSuccessCreateCustomer(customer: ICustomer) {
+    this.onList();
+  }
+
+  onDelete(id: string) {
+    Swal.fire({
+      title: `Hapus Data`,
+      text: 'Anda yakin ingin menghapus data ini?',
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, sure!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.customerService.remove(id).subscribe(() => {
+          this.onList();
+        })
+      }
+    })
+    
   }
 
 }

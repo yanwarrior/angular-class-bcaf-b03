@@ -4,14 +4,48 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
 	</div>
 	<div class="offcanvas-body">
-		<ul class="list-group">
-      <a *ngFor="let menu of menus" [routerLink]="[menu.mainPath]" 
+		<div class="accordion" id="accordionExample">
+			<div class="accordion-item" *ngFor="let menu of getMenu(); let indexNum = index;">
+				<h2 class="accordion-header">
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#a'+indexNum" aria-expanded="false" >
+						{{ menu.title }}
+					</button>
+				</h2>
+				<div *ngIf="menu.childs" [id]="'a'+indexNum" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<ul class="list-group" *ngFor="let m of menu.childs">
+							<a [routerLink]="[m.mainPath]" 
+								routerLinkActive="active"
+								class="list-group-item list-group-item-action">
+								{{ m.title }}
+							</a>
+						</ul>
+					</div>
+				</div>
+
+				<div [id]="'a'+indexNum" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+					<div class="accordion-body">
+						<ul class="list-group" >
+							<a [routerLink]="[menu.mainPath]" 
+								routerLinkActive="active"
+								class="list-group-item list-group-item-action">
+								{{ menu.title }}
+							</a>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <ul class="list-group">
+      <a *ngFor="let menu of getMenu()" [routerLink]="[menu.mainPath]" 
         routerLinkActive="active"
         class="list-group-item list-group-item-action">
         {{ menu.title }}
       </a>
-    </ul>
+    </ul> -->
 	</div>
 </ng-template>
-
-<button class="btn btn-outline-primary btn-sm" (click)="open(content)">Menu</button>
+<button class="navbar-toggler" type="button" (click)="open(content)" data-bs-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+</button>
+<!-- <button class="btn btn-outline-primary btn-sm" (click)="open(content)">Menu</button> -->

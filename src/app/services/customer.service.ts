@@ -77,4 +77,16 @@ export class CustomerService {
       { headers }
     );
   }
+
+  find(nomor: string): Observable<ICustomer> {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': this.userService.getToken()
+    }
+
+    return this.httpClient.get<ICustomer>(
+      `${environment.baseUrl}/customer/find/${nomor}`, 
+      { headers }
+    );
+  }
 }

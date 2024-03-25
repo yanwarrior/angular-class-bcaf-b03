@@ -76,4 +76,16 @@ export class BarangService {
       { headers }
     );
   }
+
+  find(nomor: string): Observable<IBarang> {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': this.userService.getToken()
+    }
+
+    return this.httpClient.get<IBarang>(
+      `${environment.baseUrl}/barang/find/${nomor}`, 
+      { headers }
+    );
+  }
 }

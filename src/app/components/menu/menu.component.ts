@@ -1,5 +1,6 @@
-import { Component, inject, TemplateRef } from '@angular/core';
+import { Component, inject, Input, TemplateRef } from '@angular/core';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,20 +8,15 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-  menus = [
-    {
-      title: 'Barang',
-      mainPath: '/main/barang'
-    },
-    {
-      title: 'Customer',
-      mainPath: '/main/customer'
-    }
-  ]
+  
 
-  constructor(private offcanvasService: NgbOffcanvas) {}
+  constructor(private offcanvasService: NgbOffcanvas, private menuService: MenuService) {}
 
   open(content: TemplateRef<any>) {
 		this.offcanvasService.open(content);
 	}
+
+  getMenu() {
+    return this.menuService.menus;
+  }
 }

@@ -1,7 +1,7 @@
 <div class="container mt-3">
   <div class="row mb-3">
     <div class="col-md-12 d-flex justify-content-between">
-      <h4>Daftar Customer</h4>
+      <h4>Daftar Order</h4>
       <div class="d-flex justify-content-end gap-3 w-75">
         <input type="text" class="form-control-sm w-50" 
           [(ngModel)]="search" 
@@ -15,9 +15,9 @@
           <option value="10">10 Items</option>
           <option value="20">20 Items</option>
         </select>
-        <app-widget-customer-create
+        <!-- <app-widget-customer-create
           (onSuccess)="onSuccessCreateCustomer($event)"
-        ></app-widget-customer-create>
+        ></app-widget-customer-create> -->
         <button (click)="onList()" class="btn btn-primary">
           refresh
         </button>
@@ -31,24 +31,23 @@
         <thead>
           <tr>
             <th>Nomor</th>
-            <th>Nama</th>
-            <th>Alamat</th>
-            <th>Telepon</th>
-            <th></th>
+            <th>Tanggal</th>
+            <th>Customer</th>
+            <th>Total</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let customer of customers.results">
-            <td>{{ customer.nomor }}</td>
-            <td>{{ customer.nama }}</td>
-            <td>{{ customer.alamat }}</td>
-            <td>{{ customer.telepon }}</td>
+          <tr *ngFor="let order of orders.results">
+            <td>{{ order.nomor }}</td>
+            <td>{{ order.tanggal | date }}</td>
+            <td>{{ order.customer.nama }}</td>
+            <td>{{ order.total | currency:'IDR':'symbol-narrow' }}</td>
             <td>
-              <app-widget-customer-detail 
+              <!-- <app-widget-customer-detail 
                 [id]="customer._id || ''"
                 (onSuccess)="onSuccessCreateCustomer($event)"
               ></app-widget-customer-detail>
-              <button (click)="onDelete(customer._id || '')" class="btn btn-outline-danger">Hapus</button>
+              <button (click)="onDelete(customer._id || '')" class="btn btn-outline-danger">Hapus</button> -->
             </td>
           </tr>
         </tbody>
@@ -56,8 +55,8 @@
           <tr>
             <td colspan="5">
               <app-paging 
-                [next]="customers.next" 
-                [previous]="customers.previous"
+                [next]="orders.next" 
+                [previous]="orders.previous"
                 (onPaginate)="onPaginate($event)"
               ></app-paging>
             </td>
@@ -66,4 +65,5 @@
       </table>
     </div>
   </div>
+
 </div>

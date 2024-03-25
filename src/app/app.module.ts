@@ -6,7 +6,7 @@ import { HaloDuniaComponent } from './components/halo-dunia/halo-dunia.component
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { UserSigninComponent } from './pages/user-signin/user-signin.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +23,16 @@ import { WidgetBarangDetailComponent } from './widgets/widget-barang-detail/widg
 import { MenuComponent } from './components/menu/menu.component';
 import { CustomerListComponent } from './pages/customers/customer-list/customer-list.component';
 import { WidgetCustomerCreateComponent } from './widgets/widget-customer-create/widget-customer-create.component';
+import { WidgetCustomerDetailComponent } from './widgets/widget-customer-detail/widget-customer-detail.component';
+import { OrderListComponent } from './pages/orders/order-list/order-list.component';
+import { OrderCreateComponent } from './pages/orders/order-create/order-create.component';
+import { ValidationComponent } from './components/validation/validation.component';
+import { SocketComponent } from './pages/socket/socket.component';
+import { AntrianInitComponent } from './pages/antrian/antrian-init/antrian-init.component';
+import { AntrianCustomerComponent } from './pages/antrian/antrian-customer/antrian-customer.component';
+import { AntrianCreateComponent } from './pages/antrian/antrian-create/antrian-create.component';
+import { AntrianCustomerSigninComponent } from './pages/antrian/antrian-customer-signin/antrian-customer-signin.component';
+import { AntrianCustomerWaitingComponent } from './pages/antrian/antrian-customer-waiting/antrian-customer-waiting.component';
 
 
 
@@ -43,7 +53,17 @@ import { WidgetCustomerCreateComponent } from './widgets/widget-customer-create/
     WidgetBarangDetailComponent,
     MenuComponent,
     CustomerListComponent,
-    WidgetCustomerCreateComponent
+    WidgetCustomerCreateComponent,
+    WidgetCustomerDetailComponent,
+    OrderListComponent,
+    OrderCreateComponent,
+    ValidationComponent,
+    SocketComponent,
+    AntrianInitComponent,
+    AntrianCustomerComponent,
+    AntrianCreateComponent,
+    AntrianCustomerSigninComponent,
+    AntrianCustomerWaitingComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +74,7 @@ import { WidgetCustomerCreateComponent } from './widgets/widget-customer-create/
     AppRoutingModule,
     NgxMaskDirective,
     NgxMaskPipe,
-
+    ReactiveFormsModule,
   ],
   providers: [provideNgxMask()],
   bootstrap: [AppComponent]
